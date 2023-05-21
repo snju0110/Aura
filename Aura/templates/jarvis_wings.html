@@ -1,0 +1,230 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Heads up..</title>
+	 <link rel = "stylesheet" href= "{% static 'jarvis.css' %}">
+	 <link rel = "stylesheet" href= "{% static 'assets/js/heads_up_js.js' %}">
+
+</head>
+
+<body>
+
+<div class = "full">
+
+
+
+<div class = "main" >
+	<div class = "myCircle" >
+
+		<div class = "mainCircle" >
+
+
+<div class="wing">
+    <img class="leftwing" src="{% static 'assets/images/general_wing.png' %}"  alt=""
+		 width="800px" height="800px">
+	<div class = leftwingtext>
+		WebMar 30, 2017 · Opacity will make <br>everything in the div transparent to 50%,
+		RGBA will just fade what he wants. For <br>full control over which<br> elements are transparent and which are …
+Reviews: 3<br>
+9
+Using css3: #divid { -moz-border-radius: 15px; <br>-webkit-border-radius: 15px; border-radius:<br> 15px; } You can read more about it here:
+		</div>
+</div>
+		<div class = "circle"></div>
+		<div class = "circle1"  id = "S1"></div>
+		<div class = "mainContent">
+
+		<ul class = "bars"  id = 'S2'>
+		<li id = 'B1'></li>
+
+		<li id = 'B2' ></li>
+		<li id = 'B3' ></li>
+		</ul>
+
+			<div class="fwingf">
+				<img  src= "{% static 'assets/images/f_wing.png' %}" alt="" srcset="">
+			<div class="fwingtext">
+<!--				<h1>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</h1>-->
+
+				<h1 style="color: orange;
+
+					"> &nbsp; &nbsp; Monthly &nbsp; ₹ Analysis</h1>
+				{% for i in dem_monthly %}
+
+				{% if i.type == 'Sent' %}
+					<h1 style="color:#FF5F1F;"> &nbsp;Total ₹'s sent  : {{ i.total_amount }} /-</h1>
+				{% endif %}
+
+				{% if i.type == 'Received' %}
+					<h1>&nbsp;Total ₹'s received : {{ i.total_amount }} /-</h1>
+				{% endif %}
+
+
+				{% endfor %}
+
+				{% for i in dem_category %}
+					{% if i.primaryCat == 'Food&Drinks' %}
+						<h1 style="color:#FF5F1F;"> &nbsp; &nbsp;₹'s Food&Drinks : {{ i.total_amount }} /-</h1>
+					{% endif %}
+				{% endfor %}
+
+				<a href="/Dem/Main/">
+					<img  class="moneyicon" src= "{% static 'assets/images/rupee.png' %}" alt="" srcset=""
+				width="100px">
+				</a>
+
+
+
+		</div>
+
+</div>
+		<div class ="chatbar">
+			 <form  action = "/Jarvis/" method = "POST"  id = "formz">
+                      {% csrf_token %}
+
+			<input type = text id="convert_text"  name = 'phrase' >
+				 </form>
+<!--			<textarea id="convert_text"></textarea>-->
+		<button type="button" id="speakA"><img  class="mic" src="{% static 'assets/images/micc.png' %}" width="120px" ></button>
+		</div>
+
+		</div>
+	</div>
+	</div>
+</div>
+
+
+</div>
+
+
+
+<script scr = "{% static 'assets/js/heads_up_js.js'%}" >
+
+if (10 < 18) {
+document.getElementById("B1").style.animation = "loaderbar 0.6s infinite 0s";
+document.getElementById("B2").style.animation = "loaderbar 0.6s infinite -0.3s";
+document.getElementById("B3").style.animation = "loaderbar 0.6s infinite 0.5s";
+}
+search_text = "avi";
+document.getElementById("S1").style.animation = "spinplusoff 5s infinite";
+convert_text.value = "{{talk_data}}";
+A = 'IAM THE BEST';
+
+const message = new SpeechSynthesisUtterance();
+message.text = '{{talk_data}}';
+message.voice = window.speechSynthesis.getVoices()[0]; // Set the voice
+message.pitch = 1; // Set the pitch
+message.rate = 1; // Set the rate
+window.speechSynthesis.speak(message);
+
+
+////////////////////////////////////////////////////////////
+speakA.addEventListener('click', function(){
+console.log('button clicked');
+<!--var speech = true;-->
+<!--window.SpeechRecognition = window.webkitSpeechRecognition;-->
+<!--const recognition = new SpeechRecognition(); recognition.interimResults = true;-->
+<!--search_text = recognition.addEventListener('result', e=>{ const transcript = Array.from(e.results)-->
+<!--.map(result =>result[0])-->
+<!--.map(result => result.transcript)-->
+<!--convert_text.innerHTML = transcript;-->
+
+<!--console.log(' listening.....');-->
+<!--})-->
+
+
+<!--if(speech == true)-->
+<!--{-->
+<!--recognition.start();-->
+
+<!--}-->
+
+<!--//&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--const recognition = new webkitSpeechRecognition(); // create a new instance of the Web Speech API-->
+
+<!--recognition.lang = 'en-US'; // set the language to US English-->
+<!--recognition.continuous = true; // set continuous listening mode-->
+<!--recognition.interimResults = true; // enable interim results-->
+<!--recognition.maxAlternatives = 1; // set maximum number of possible transcriptions-->
+
+<!--recognition.onresult = function(event) {-->
+<!--  const transcription = event.results[event.results.length - 1][0].transcript; // get the final transcription from the last result-->
+<!--  console.log(transcription); // log the transcription to the console-->
+<!--  convert_text.innerHTML = transcription-->
+<!--};-->
+
+
+
+<!--recognition.onerror = function(event) {-->
+<!--  console.error(event.error); // log any errors to the console-->
+<!--};-->
+<!--recognition.onend = function(event) {-->
+<!--  console.log('Speech recognition has stopped.');-->
+
+<!--  // Do something else, such as restarting the recognition if desired-->
+<!--};-->
+<!--recognition.start(); // start listening for speech-->
+<!--//-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+const recognition = new webkitSpeechRecognition();
+
+let maxSpeechTime = 7000; // set maximum listening time to 5 seconds
+let timer;
+let finalword;
+const formElement = document.getElementById('formz');
+recognition.onresult = function(event) {
+  for (let i = event.resultIndex; i < event.results.length; i++) {
+    if (event.results[i].isFinal) {
+      const transcription = event.results[i][0].transcript;
+
+      console.log('Final transcription: ' + transcription);
+      finalword = transcription;
+      stopRecognition();
+    }
+  }
+  // start or reset the timer when a new result is received
+  clearTimeout(timer);
+  timer = setTimeout(stopRecognition, maxSpeechTime);
+};
+
+recognition.onerror = function(event) {
+  console.error(event.error);
+  stopRecognition();
+};
+
+recognition.onend = function() {
+  console.log('Speech recognition has ended.');
+  convert_text.value = finalword
+  stopRecognition();
+
+
+  formElement.submit();
+
+
+};
+
+function stopRecognition() {
+  clearTimeout(timer);
+  recognition.stop();
+}
+recognition.start();
+
+
+})
+/////////////////////////////////////////////////////////////
+
+
+
+</script>
+
+
+</body>
+</html>
+
+
+
