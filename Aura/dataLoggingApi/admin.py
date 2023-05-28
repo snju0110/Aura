@@ -6,3 +6,4 @@ from django.contrib import admin
 from .models import *
 admin.register(demDatatable)(admin.ModelAdmin)
 admin.register(demDailyData)(admin.ModelAdmin)
+admin.register(foodDailyData)(admin.ModelAdmin)

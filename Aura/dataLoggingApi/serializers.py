@@ -12,3 +12,9 @@ class demDailyDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = demDailyData
         fields = '__all__'
+
+
+class foodDailyDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = foodDailyData
+        fields = '__all__'

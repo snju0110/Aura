@@ -8,7 +8,7 @@ import pandas as pd
 import math
 import requests
 
-url = 'http://127.0.0.1:8000/datalog/'
+# url = 'http://127.0.0.1:8000/datalog/'
 # url = 'http://snju19.pythonanywhere.com/datalog/'
 
 # user = 'avinashbaswa.a4@gmail.com'

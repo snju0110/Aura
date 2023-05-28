@@ -14,6 +14,29 @@ from django.contrib import messages
 import wikipedia
 
 @api_view(['GET', 'POST', 'PUT'])
+def food_daily_data(requests):
+    if requests.method == 'GET':
+        queryset = foodDailyData.objects.all()
+        serializer = foodDailyDataSerializer(queryset, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    if requests.method == 'POST':
+        serializer = foodDailyDataSerializer(data=requests.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+
+
+
+
+
+
+
+
+@api_view(['GET', 'POST', 'PUT'])
 def DemDailyData(requests):
     if requests.method == 'GET':
         queryset = demDailyData.objects.all()
@@ -33,6 +56,8 @@ def DemDailyData(requests):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
 
 
 @api_view(['GET', 'POST', 'PUT'])
@@ -243,3 +268,7 @@ def MonthTable(request):
         'selected_date': selected_date
     }
     return render(request, "dem_monthly_record_table.html", context)
+
+
+def test_case():
+    pass
