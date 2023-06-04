@@ -2,7 +2,7 @@ import wikipedia
 
 
 
-
+#try
 phrase_word = 'Warren buffet'
 
 talk_data = wikipedia.wikipedia.summary("India",)
