@@ -270,5 +270,5 @@ def MonthTable(request):
     return render(request, "dem_monthly_record_table.html", context)
 
 
-def test_case():
-    pass
+def test_case(self):
+    foodDailyData.objects.all().delete()

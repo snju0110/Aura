@@ -42,7 +42,7 @@ class foodDailyData(models.Model):
 
     id = models.AutoField(primary_key=True)
     user = models.CharField(max_length=200)
-    time_stamp = models.DateTimeField
+    time_stamp = models.DateTimeField()
     meal_type = models.CharField(max_length=200)
     meal_qty = models.IntegerField()
     category = models.CharField(max_length=200)
