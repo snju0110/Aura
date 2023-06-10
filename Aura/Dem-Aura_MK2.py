@@ -17,7 +17,7 @@ url = 'http://snju19.pythonanywhere.com/datalog/'
 
 
 UserDetails = {'Sanjay': ['baswasanjay19@gmail.com', 'cntc yeac sblf jhdb'],
-               'Avinash': ['avinashbaswa.a4@gmail.com', 'kdoo tsqj ivrr sltu'],
+               'Avinash': ['avinashbaswa.a4@gmail.com', 'vnjc iyfw skrm mcic']  # 'kdoo tsqj ivrr sltu'],
 
                }
 

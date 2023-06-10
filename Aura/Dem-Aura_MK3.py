@@ -9,19 +9,19 @@ import math
 import requests
 
 # url = 'http://127.0.0.1:8000/datalog/'
-# url = 'http://snju19.pythonanywhere.com/datalog/'
+url = 'http://aura19.pythonanywhere.com/datalog/'
 
 # user = 'avinashbaswa.a4@gmail.com'
 # password = 'kdoo tsqj ivrr sltu'
 
 
+
 UserDetails = {'Sanjay': ['baswasanjay19@gmail.com', 'cntc yeac sblf jhdb'],
-               'Avinash': ['avinashbaswa.a4@gmail.com', 'kdoo tsqj ivrr sltu'],
-}
+               'Avinash': ['avinashbaswa.a4@gmail.com', 'vnjc iyfw skrm mcic'] }
 
 df = pd.read_csv('rank.csv')
 imap_url = 'imap.gmail.com'
-date = '2023-05-01'
+date = '2023-06-09'
 Debt_record = {}
 Confusion_flag = 0
 P_data = []

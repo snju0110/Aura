@@ -17,11 +17,8 @@ url = 'http://aura19.pythonanywhere.com/datalog/'
 # user = 'avinashbaswa.a4@gmail.com'
 # password = 'kdoo tsqj ivrr sltu'
 
-
 UserDetails = {'Sanjay': ['baswasanjay19@gmail.com', 'cntc yeac sblf jhdb'],
-               'Avinash': ['avinashbaswa.a4@gmail.com', 'kdoo tsqj ivrr sltu'],
-
-               }
+               'Avinash': ['avinashbaswa.a4@gmail.com', 'vnjc iyfw skrm mcic'] }
 
 df = pd.read_csv('rank.csv')
 imap_url = 'imap.gmail.com'
