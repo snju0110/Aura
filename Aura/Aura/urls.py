@@ -23,7 +23,7 @@ urlpatterns = [
     # path('dem/' , include('dataLoggingApi.urls')) ,
     path('datalog/', views.DemDailyData),
     path('foodlog/', views.food_daily_data),
-    path('test/', views.test_case),
+    path('test/<id>/', views.test_case),
     # path('datalog/mealtracker', views.Meal_tracker),
     path('edit/<int:id>', views.edit_records, name="formdata"),  # edit dem data
     path('', views.Login),  # login page

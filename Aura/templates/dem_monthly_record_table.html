@@ -47,14 +47,20 @@
                           <input   type="date"  name="tdate" value = {{selected_date.to_date}}>
                                 <select  name = 'column_filter'>
                                     <option value = {{selected_date.column_filter}} selected >Selected:{{selected_date.column_filter}}'</option>
-                                    <option value = Bills&Payments > Bills&Payments</option>
-                                    <option value = Kitchen&Grocery >Kitchen&Grocery</option>
-                                    <option value = Shoppings >Shoppings</option>
-                                    <option value = Food&Drinks >Food&Drinks</option>
-                                    <option value = Received_NC >Received_NC</option>
-                                    <option value = Medical >Medical</option>
-                                     <option value = Travel >Travel</option>
-                                    <option value = Others > Others</option>
+<!--                                    <option value = Bills&Payments > Bills&Payments</option>-->
+<!--                                    <option value = Kitchen&Grocery >Kitchen&Grocery</option>-->
+<!--                                    <option value = Shoppings >Shoppings</option>-->
+<!--                                    <option value = Food&Drinks >Food&Drinks</option>-->
+<!--                                    <option value = Received_NC >Received_NC</option>-->
+<!--                                    <option value = Medical >Medical</option>-->
+<!--                                     <option value = Travel >Travel</option>-->
+<!--                                    <option value = Others > Others</option>-->
+                                     <option value = Received_NC >Received_NC</option>
+                                     {% for i in p_cat_setting %}
+
+                                <option value = {{i}} > {{i}}</option>
+                                {% endfor %}
+                                    <option value = All_records >All_records</option>
                                 </select>
                           <input type="submit" value="Submit">
                       </form>

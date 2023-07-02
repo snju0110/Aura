@@ -2,3 +2,5 @@ Aura/check.py
 Aura/Aura/settings.py
 **/*.pyc
 Aura/db.sqlite3
+Aura/Aura/__pycache__
+Aura/Aura/__pycache__

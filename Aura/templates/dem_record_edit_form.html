@@ -96,15 +96,18 @@
                             <label class="col-sm-3 col-form-label">Category</label>
                             <div class="col-sm-9">
                               <select class="form-control" name = 'cat'>
-                                <option value = {{formData.primaryCat}} selected >Original Value: {{formData.primaryCat}}'</option>
-                                <option value = Bills&Payments > Bills&Payments</option>
-                                <option value = Kitchen&Grocery >Kitchen&Grocery</option>
-                                <option value = Shoppings >Shoppings</option>
-                                <option value = Food&Drinks >Food&Drinks</option>
-                                <option value = Received_NC >Received_NC</option>
-                                <option value = Medical >Medical</option>
-                                 <option value = Travel >Travel</option>
-                                <option value = Others > Others</option>
+                               <option value = {{formData.primaryCat}} selected >Original Value: {{formData.primaryCat}}'</option>
+<!--                                <option value = Bills&Payments > Bills&Payments</option>-->
+<!--                                <option value = Kitchen&Grocery >Kitchen&Grocery</option>-->
+<!--                                <option value = Shoppings >Shoppings</option>-->
+<!--                                <option value = Food&Drinks >Food&Drinks</option>-->
+<!--                                <option value = Received_NC >Received_NC</option>-->
+<!--                                <option value = Medical >Medical</option>-->
+<!--                                 <option value = Travel >Travel</option>-->
+<!--                                <option value = Others > Others</option>-->
+                                {% for i in p_cat_setting %}
+                                <option value = {{i}} > {{i}}</option>
+                                {% endfor %}
                               </select>
                             </div>
                           </div>

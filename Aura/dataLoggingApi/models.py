@@ -53,3 +53,14 @@ class foodDailyData(models.Model):
 
     def __str__(self):
         return self.user
+
+class settingDemCategory(models.Model):
+
+    id = models.AutoField(primary_key=True)
+    user = models.CharField(max_length=200)
+    primary_category = models.CharField(max_length=200)
+    secondary_category = models.CharField(max_length=200)
+
+
+    def __str__(self):
+        return self.user

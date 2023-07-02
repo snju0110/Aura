@@ -31,11 +31,6 @@ def food_daily_data(requests):
 
 
 
-
-
-
-
-
 @api_view(['GET', 'POST', 'PUT'])
 def DemDailyData(requests):
     if requests.method == 'GET':
@@ -63,12 +58,16 @@ def DemDailyData(requests):
 @api_view(['GET', 'POST', 'PUT'])
 def edit_records(request, id):
     if request.method == 'GET':
+        p_cat_setting = settingDemCategory.objects.values_list('primary_category', flat=True)
+
         print("Records pushed for ID: {id}".format(id=id))
         queryset = demDailyData.objects.get(id=id)
         queryset.date.strftime("%Y-%m-%d")
         context = {
-            'formData': queryset
+            'formData': queryset ,
+            'p_cat_setting' : p_cat_setting
         }
+        print(context)
         return render(request, "dem_record_edit_form.html", context)
     if request.method == 'POST':
         print("request for edit record for ID: {id}".format(id=id))
@@ -157,7 +156,6 @@ def Jarvis_Headsup(request):
 
 
 def DemMainPage(request):
-    # print("------------------" , user.username)
     try:
         current_user = request.user
         print(current_user.id)
@@ -165,7 +163,6 @@ def DemMainPage(request):
 
         today = request.GET["tdate"]
 
-        print("--- mss", today, MonthStartDate)
         formatted_today = datetime.strptime(today, "%Y-%m-%d")
         yesterday = formatted_today - timedelta(days=1)
         print(yesterday)
@@ -184,10 +181,11 @@ def DemMainPage(request):
     current_user = request.user
     user = current_user.username
 
-    monthlydata = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user).values('type').annotate(
+    monthlydata = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user ).exclude(primaryCat="Skip").values('type').annotate(
         total_amount=Sum('amount'))
 
-    datewisespent = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user, type='Sent').values(
+    print(monthlydata)
+    datewisespent = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user, type='Sent').exclude(primaryCat="Skip").values(
         'date').annotate(
         total_amount=Sum('amount'))
     datewiserecv = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user, type='Received').values(
@@ -206,7 +204,7 @@ def DemMainPage(request):
     dayr, day_recv = [], []
 
     for i in category_data:
-        if i['primaryCat'] not in ('Received_NC', 'Others'):
+        if i['primaryCat'] not in ('Received_NC', 'Others' , 'Skip'):
             cat.append(i['primaryCat'])
             catVal.append(i['total_amount'])
 
@@ -257,6 +255,8 @@ def MonthTable(request):
         selected_date = {'from_date': MonthStartDate, 'to_date': parsed_today, "column_filter": 'All_records'}
         print("Auto sleleced for month", selected_date)
 
+    p_cat_setting = settingDemCategory.objects.values_list('primary_category', flat=True)
+
     if selected_date['column_filter'] == 'All_records':
         set = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user, ).order_by('-date')
     else:
@@ -264,11 +264,21 @@ def MonthTable(request):
                                           primaryCat=selected_date['column_filter']).order_by('-date')
 
     context = {
-        'set': set,
-        'selected_date': selected_date
+    'set': set,
+    'selected_date': selected_date,
+    'p_cat_setting':p_cat_setting
     }
     return render(request, "dem_monthly_record_table.html", context)
 
 
-def test_case(self):
-    foodDailyData.objects.all().delete()
+def test_case(request , id):
+    current_user = request.user
+    user = current_user.username
+
+    data = settingDemCategory.objects.values_list('primary_category', flat=True)
+    print("data",data)
+    for i in data:
+        print("----------------------------" , i)
+    return JsonResponse({'data':list(data)}, safe=False)
+
+    #foodDailyData.objects.all().delete()
