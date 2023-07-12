@@ -124,11 +124,11 @@ def Jarvis_Headsup(request):
     talk_data = 'Ask here !'
 
     if request.method == 'POST':
-        print("---------------------------------------------------------------")
+
         phrase_word = request.POST["phrase"]
-
-        talk_data = wikipedia.search(phrase_word)
-
+        print("---------------------------------------------------------------phrase_word :" , phrase_word)
+        talk_data = wikipedia.summary("phrase_word", sentences=2)
+        print(talk_data)
         print(phrase_word)
     today = date.today()
     parsed_today = today.strftime("%Y-%m-%d")
@@ -151,7 +151,7 @@ def Jarvis_Headsup(request):
         'dem_category': category_data,
         'talk_data':talk_data,
     }
-
+    print("passed")
     return render(request, "jarvis_wings.html", context)
 
 
@@ -282,3 +282,17 @@ def test_case(request , id):
     return JsonResponse({'data':list(data)}, safe=False)
 
     #foodDailyData.objects.all().delete()
+
+def monthlydata(requests):
+    print("--------------------------------------------")
+    datewisespent = demDailyData.objects.filter(date__range=['2023-07-01', '2023-07-30'], user='Sanjay', type='Sent').exclude(primaryCat="Skip").values(
+        'date').annotate(
+        total_amount=Sum('amount'))
+    data = {}
+    for i in datewisespent:
+        q_date = i['date']
+        f_date = q_date.strftime("%Y-%m-%d")
+        data[f_date] = i['total_amount']
+
+    print(data)
+    return JsonResponse(data, safe=False)

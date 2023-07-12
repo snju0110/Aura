@@ -33,5 +33,6 @@ urlpatterns = [
     path('transactionAnalysis/', views.DemMainPage),
     path('docmanager/', DocViews.save_doc_data),
     path('customtransaction/', views.MonthTable),  # all records table
+    path('monthlydata/', views.monthlydata),
 
 ]

@@ -25,7 +25,6 @@
     <link rel="shortcut icon" href="{% static 'assets/images/favicon_money.png' %}" />
   </head>
 <!--   <a  href="user"> Monthly Analysis</a>-->
-
 <body>
          <div class="row ">
               <div class="col-12 grid-margin">
@@ -39,8 +38,13 @@
                                     <span class="menu-title">Expenses Dashboard /</span>
                                 </a>
 
+
+
                       <h4 style="display: inline;" class="card-title">Transactions History </h4>
+
                       <h4 class="card-title"></h4>
+
+                      <div
 
                       <form  action="/customtransaction/">
                           <input  type="date"  name="fdate" value = {{selected_date.from_date}} >
@@ -65,6 +69,11 @@
                           <input type="submit" value="Submit">
                       </form>
 
+                        <div style="display: inline;">
+                                 <a style = "align: right;">Add Transcription</a>
+                        </div>
+
+                      </div>
 
                     <div class="table-responsive">
                       <table class="table">
