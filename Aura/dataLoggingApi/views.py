@@ -1,4 +1,4 @@
-#sanjay > aura > pythonanywhere > github
+# sanjay > aura > pythonanywhere > github
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from dataLoggingApi.models import *
@@ -13,6 +13,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 import wikipedia
 
+
 @api_view(['GET', 'POST', 'PUT'])
 def food_daily_data(requests):
     if requests.method == 'GET':
@@ -26,9 +27,6 @@ def food_daily_data(requests):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-
-
 
 
 @api_view(['GET', 'POST', 'PUT'])
@@ -53,8 +51,6 @@ def DemDailyData(requests):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-
-
 @api_view(['GET', 'POST', 'PUT'])
 def edit_records(request, id):
     if request.method == 'GET':
@@ -64,8 +60,8 @@ def edit_records(request, id):
         queryset = demDailyData.objects.get(id=id)
         queryset.date.strftime("%Y-%m-%d")
         context = {
-            'formData': queryset ,
-            'p_cat_setting' : p_cat_setting
+            'formData': queryset,
+            'p_cat_setting': p_cat_setting
         }
         print(context)
         return render(request, "dem_record_edit_form.html", context)
@@ -117,16 +113,14 @@ def Login(request):
 
 
 def Jarvis_Headsup(request):
-
     current_user = request.user
     user = current_user.username
 
     talk_data = 'Ask here !'
 
     if request.method == 'POST':
-
         phrase_word = request.POST["phrase"]
-        print("---------------------------------------------------------------phrase_word :" , phrase_word)
+        print("---------------------------------------------------------------phrase_word :", phrase_word)
         talk_data = wikipedia.summary("phrase_word", sentences=2)
         print(talk_data)
         print(phrase_word)
@@ -149,7 +143,7 @@ def Jarvis_Headsup(request):
     context = {
         'dem_monthly': monthly_type_data,
         'dem_category': category_data,
-        'talk_data':talk_data,
+        'talk_data': talk_data,
     }
     print("passed")
     return render(request, "jarvis_wings.html", context)
@@ -181,11 +175,13 @@ def DemMainPage(request):
     current_user = request.user
     user = current_user.username
 
-    monthlydata = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user ).exclude(primaryCat="Skip").values('type').annotate(
+    monthlydata = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user).exclude(
+        primaryCat="Skip").values('type').annotate(
         total_amount=Sum('amount'))
 
     print(monthlydata)
-    datewisespent = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user, type='Sent').exclude(primaryCat="Skip").values(
+    datewisespent = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user, type='Sent').exclude(
+        primaryCat="Skip").values(
         'date').annotate(
         total_amount=Sum('amount'))
     datewiserecv = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user, type='Received').values(
@@ -204,7 +200,7 @@ def DemMainPage(request):
     dayr, day_recv = [], []
 
     for i in category_data:
-        if i['primaryCat'] not in ('Received_NC', 'Others' , 'Skip'):
+        if i['primaryCat'] not in ('Received_NC', 'Others', 'Skip'):
             cat.append(i['primaryCat'])
             catVal.append(i['total_amount'])
 
@@ -264,28 +260,36 @@ def MonthTable(request):
                                           primaryCat=selected_date['column_filter']).order_by('-date')
 
     context = {
-    'set': set,
-    'selected_date': selected_date,
-    'p_cat_setting':p_cat_setting
+        'set': set,
+        'selected_date': selected_date,
+        'p_cat_setting': p_cat_setting
     }
     return render(request, "dem_monthly_record_table.html", context)
 
 
-def test_case(request , id):
-    current_user = request.user
-    user = current_user.username
+@api_view(['GET', 'POST', 'PUT'])
+def test_case_a(request):
+    if request.method == 'POST':
+        print(request.data)
+    if request.method == 'GET':
+        ata = {'use': 'pas'}
+    # current_user = request.user
+    # user = current_user.username
+    #
+    # data = settingDemCategory.objects.values_list('primary_category', flat=True)
+    # print("data",data)
+    # for i in data:
+    print("----------------------------")
 
-    data = settingDemCategory.objects.values_list('primary_category', flat=True)
-    print("data",data)
-    for i in data:
-        print("----------------------------" , i)
-    return JsonResponse({'data':list(data)}, safe=False)
+    return JsonResponse(request.data, safe=False)
 
-    #foodDailyData.objects.all().delete()
+    # foodDailyData.objects.all().delete()
+
 
 def monthlydata(requests):
     print("--------------------------------------------")
-    datewisespent = demDailyData.objects.filter(date__range=['2023-07-01', '2023-07-30'], user='Sanjay', type='Sent').exclude(primaryCat="Skip").values(
+    datewisespent = demDailyData.objects.filter(date__range=['2023-07-01', '2023-07-30'], user='Sanjay',
+                                                type='Sent').exclude(primaryCat="Skip").values(
         'date').annotate(
         total_amount=Sum('amount'))
     data = {}
@@ -296,3 +300,20 @@ def monthlydata(requests):
 
     print(data)
     return JsonResponse(data, safe=False)
+
+
+@api_view(['POST'])
+def app_login(request):
+    if request.method == 'POST':
+        appuserdata = request.data
+        try:
+            user = auth.authenticate(username=appuserdata['username'], password=appuserdata['password'])
+
+            if user is not None:
+                return JsonResponse({'Login': True}, safe=False)
+            else:
+                return JsonResponse({'Login': False}, safe=False)
+        except:
+            return JsonResponse({'Login':False} , safe=False)
+
+
