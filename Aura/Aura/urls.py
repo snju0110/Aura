@@ -28,12 +28,13 @@ urlpatterns = [
     path('edit/<int:id>', views.edit_records, name="formdata"),  # edit dem data
     path('', views.Login),  # login page
     path('Logout/', views.Logout),  # logout
-    path('Jarvis/', views.Jarvis_Headsup),  # Jarvis DashBoard
+    path('Jarvis/', views.Jarvis_Headsup, name="Head_display"),  # Jarvis DashBoard
     path('Dem/Main/', views.DemMainPage, name="main"),  # landing page
     path('transactionAnalysis/', views.DemMainPage),
     path('docmanager/', DocViews.save_doc_data),
     path('customtransaction/', views.MonthTable),  # all records table
     path('monthlydata/', views.monthlydata),
     path('applogin/' , views.app_login),
+    path('docma/' , views.docma) ,
 
 ]

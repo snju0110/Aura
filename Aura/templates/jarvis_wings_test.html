@@ -1,0 +1,571 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=NO">
+    <title>Heads up..</title>
+	 <link rel = "stylesheet" href= "{% static 'jarvis_test.css' %}">
+	 <link rel = "stylesheet" href= "{% static 'assets/js/heads_up_js.js' %}">
+
+</head>
+
+<body>
+
+<div class = "full">
+
+
+
+<div class = "main" >
+
+		<div class = "mainCircle" >
+
+	<div class = "myCircle" >
+
+
+<div class="wing">
+    <img class="leftwing" src="{% static 'assets/images/general_wing.png' %}"  alt=""
+		 width="800px" height="800px">
+
+	   <div class="data">
+        <div class="icon"><img src="{% static 'cloudy.png' %}" style= 'height:3rem'/></div>
+        <div class="temp">-°C</div>
+        <div class="summary">----</div>
+        <div class="location"></div>
+        <div class="long">-----</div>
+    </div>
+
+	<div id="chart_id">
+		<canvas id="myChart">
+		</canvas></div>
+
+	  <div class="newshead">
+          <div class="newstitlea">
+         <img class="newsimage" src="ironman/news5.png" alt=""
+         width="80px">
+			  <input type="text" id="ipnews">
+			 <button id="rm_b">ReadMore</button>
+         <div id = "newshead" class="tit">fetching news</div>
+              </div>
+       <div id = "titles"class="newstitle" >!!!</div>
+    </div>
+
+
+
+
+</div>
+
+		<div class = "circle"></div>
+		<div class = "circle1"  id = "S1"></div>
+		<div class = "mainContent">
+
+		<ul class = "bars"  id = 'S2'>
+		<li id = 'B1'></li>
+
+		<li id = 'B2' ></li>
+		<li id = 'B3' ></li>
+		</ul>
+
+			<div class="fwingf">
+				<img  src= "{% static 'assets/images/f_wing.png' %}" alt="" srcset="">
+			<div class="fwingtext">
+<!--				<h1>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</h1>-->
+
+				<h1 style="color: orange;
+
+					"> &nbsp; &nbsp; Monthly &nbsp; ₹ Analysis</h1>
+				{% for i in dem_monthly %}
+
+				{% if i.type == 'Sent' %}
+					<h1 style="color:#FF5F1F;"> &nbsp;Total ₹'s sent  : {{ i.total_amount }} /-</h1>
+				{% endif %}
+
+				{% if i.type == 'Received' %}
+					<h1>&nbsp;Total ₹'s received : {{ i.total_amount }} /-</h1>
+				{% endif %}
+
+
+				{% endfor %}
+
+				{% for i in dem_category %}
+					{% if i.primaryCat == 'Food&Drinks' %}
+						<h1 style="color:#FF5F1F;"> &nbsp; &nbsp;₹'s Food&Drinks : {{ i.total_amount }} /-</h1>
+					{% endif %}
+				{% endfor %}
+
+				<a href="/Dem/Main/">
+					<img  class="moneyicon" src= "{% static 'assets/images/rupee.png' %}" alt="" srcset=""
+				width="100px">
+				</a>
+
+
+
+		</div>
+
+</div>
+		<div class ="chatbar">
+
+			 <form  action = "/Jarvis/" method = "POST"  id = "formz"     onsubmit="event.preventDefault()" autocomplete="off">
+                      {% csrf_token %}
+			<div class="loader">
+  <div class="inner one" id = "1"></div>
+  <div class="inner two" id = "2"></div>
+  <div class="inner three" id = "3" ></div>
+</div>
+
+			<input type = text id="convert_text"  name = 'phrase' >
+				 </form>
+
+			<div id="readmore_div">
+				lets get the hell out of there
+			</div>
+
+
+
+
+<!--			<textarea id="convert_text">
+
+
+
+
+
+</textarea>-->
+		<button type="button" id="speakA">
+				<img  class="mic" id="mouth" src="{% static 'assets/images/micc.png' %}" width="120px" >
+		</button>
+		</div>
+
+		</div>
+	</div>
+	</div>
+
+
+</div>
+
+
+</div>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+
+<script scr = "{% static 'assets/js/heads_up_js.js'%}" >
+/////////////////////////////////////////GRAPH
+
+const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 1,
+      backgroundColor: "red",
+      borderColor: "red",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
+/////////////
+
+rone = document.getElementById("1");
+<!--var rt = document.getElementById("1");-->
+var rone = document.getElementById("1");
+    function spin(){
+document.getElementById("1").style.animation = "rotate-onek 1s linear infinite -1s";
+document.getElementById("2").style.animation = "rotate-two 1s linear infinite -1s";
+document.getElementById("3").style.animation = "rotate-three 1s linear infinite -1s";
+}
+
+//spin();
+
+
+
+if (10 < 18) {
+document.getElementById("B1").style.animation = "loaderbar 0.6s infinite 0s";
+document.getElementById("B2").style.animation = "loaderbar 0.6s infinite -0.3s";
+document.getElementById("B3").style.animation = "loaderbar 0.6s infinite 0.5s";
+}
+search_text = "avi";
+document.getElementById("S1").style.animation = "spinplusoff 5s infinite";
+convert_text.value ="ask something!!";
+const formElement = document.getElementById('formz');
+var side_rm = document.getElementById("readmore_div");
+
+//////////temp//////////////
+let lon;
+    let lat;
+    let temperature = document.querySelector(".temp");
+    let summary = document.querySelector(".summary");
+    let loc = document.querySelector(".location");
+    let icon = document.querySelector(".icon");
+    let long = document.querySelector(".long");
+    let latt = document.querySelector(".lat");
+    const kelvin = 273;
+
+    window.addEventListener("load", () => {
+      if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
+      lon = position.coords.longitude;
+      lat = position.coords.latitude;
+      console.log(lon);
+
+      // API ID
+      const api = "6d055e39ee237af35ca066f35474e9df";
+
+      // API URL
+      const base =
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&` +
+    `lon=${lon}&appid=c256aa80ccbb06a9463d7fd062933f34`;
+
+      // Calling the API
+      fetch(base)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+            console.log("lets log from here!!")
+
+
+
+          console.log(data);
+          temperature.textContent =
+              Math.floor(data.main.temp - kelvin) + "°C" ;
+              temperature.style.fontSize = "30px";
+              summary.style.fontSize = "30px";
+
+          summary.textContent = data.weather[0].description;
+          long.textContent = lon + " "+lat;
+
+          loc.textContent = data.name + "," + data.sys.country;
+          let icon1 = data.weather[0].icon;
+
+        //  icon.innerHTML =
+          //    `<img src="static/cloudy.png" style= 'height:3rem'/>`;
+
+
+        });
+    });
+      }
+    });
+/////////////////////////
+///////////////news/////
+//newstitle
+ let headnews = document.getElementById("newshead");
+ let news_c = document.getElementById("ipnews");
+ let title = document.getElementById("titles");
+ var news_all_data = 'News';
+ var readmore_b = document.getElementById('rm_b');
+
+
+function get_news(news_topic){
+
+
+ let newsline =
+ "https://newsdata.io/api/1/news?apikey=pub_1970417c41a9dca55a519738fa0e3003ca26d&q="+news_topic+"&language=en";
+   //  const news =
+    //`https://newsdata.io/api/1/news?apikey=pub_1970417c41a9dca55a519738fa0e3003ca26d&q=&language=en`;
+ headnews.innerHTML ="fetching data on "+news_topic;
+     // Calling the API
+      fetch(newsline)
+        .then((responsea) => {
+          return responsea.json();
+        })
+        .then((dataa) => {
+          console.log(dataa);
+          console.log(dataa.results[0]['title']);
+          news_all_data =' ';
+			news_all_data +=   " News on:"+news_topic + "<br>";
+          for(let i = 0; i < 10 ; i++)
+          {
+          news_all_data +=  "<br>"+i +".   " +dataa.results[i]['title']+"<br>" +"<br>"  + "description : "+ dataa.results[i]['description'] +"<br>" +"<br>" +"<br>" ;
+
+          }
+
+          let news ="1. "+dataa.results[1]['title']+"<br>"+
+          "<br>"+"2. "+dataa.results[0]['title'];
+          let space = " ";
+           headnews.innerHTML =" News heads of " + news_topic;
+
+
+
+           //document.getElementById("newshead").style.backgroundColor = "black";
+           document.getElementById("newshead").style.fontSize = "25px";
+           document.getElementById("titles").style.fontSize = "18px";
+           //document.getElementById("newshead").style.padding = "5px";
+           //document.getElementById("newshead").style.margin = "0px";
+
+
+          title.innerHTML = news;
+
+<!--          const utterance = new SpeechSynthesisUtterance(news);-->
+<!--utterance.pitch = 1;-->
+<!--utterance.volume = 1;-->
+<!--utterance.rate = 1;-->
+<!--speechSynthesis.speak(utterance);-->
+});
+        }
+
+if (news_c.value.length > 1){
+newsabout = news_c.value;
+get_news(newsabout);
+}
+else{
+newsabout = 'today';
+ get_news(newsabout);
+}
+
+
+news_c.addEventListener('change',function(){
+   get_news(news_c.value);
+   side_rm.style.visibility = "hidden";
+   })
+
+
+
+   readmore_b.addEventListener('click',function()
+   {
+
+
+
+   if (news_c.value.length > 1)
+   {
+newsabout = news_c.value;
+get_news(newsabout);
+}else {
+newsabout = 'today';
+ get_news(newsabout);
+}
+
+side_rm.style.visibility = "visible";
+
+ side_rm.innerHTML = news_all_data;
+
+ })
+
+
+
+
+
+//////////////////////
+
+
+
+speakA.addEventListener('click',function(){
+
+//spin();
+
+var speech = true;
+var finalword;
+
+
+
+window.SpeechRecognition = window.webkitSpeechRecognition;
+ const recognition = new SpeechRecognition();
+recognition.interimResults = true; ;
+recognition.addEventListener('result', e=>{
+const transcript = Array.from(e.results)
+.map(result =>result[0])
+.map(result => result.transcript)
+convert_text.value =transcript;
+spin();
+})
+
+recognition.onresult = function(event) {
+  for (let i = event.resultIndex; i < event.results.length; i++) {
+    if (event.results[i].isFinal) {
+      const transcription = event.results[i][0].transcript;
+     // console.log('Final transcription: ' + transcription);
+      finalword = transcription;
+      //stopRecognition();
+    }
+  }
+  // start or reset the timer when a new result is received
+  //clearTimeout(timer);
+  //timer = setTimeout(stopRecognition, maxSpeechTime);
+
+};
+
+recognition.onerror = function(event) {
+  console.error(event.error);
+ // stopRecognition();
+};
+
+recognition.onend = function() {
+rone.animationDirection = "paused";
+  console.log('Speech recognition has ended.');
+  convert_text.value = finalword
+
+  //stopRecognition();
+
+  formElement.submit();
+
+  /////////////
+  console.log("----------------------------");
+  console.log(finalword);
+
+  let search = convert_text.value ;
+if (search.includes('News.') || search.includes('news'))
+{
+console.log('Newsinnn');
+
+}
+else if(search.includes('Sports.'))
+{
+console.log('sportsinn');
+}
+};
+if(speech = true){
+recognition.start();
+}
+})
+
+</script>
+
+
+</body>
+<style>
+
+.loader {
+
+transform:scale(.5);
+  position: absolute;
+  top: -50px;
+  left: 640px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  perspective: 800px;
+
+}
+
+.inner {
+
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.inner.one {
+
+  left: 0%;
+  top: 0%;
+  //animation: rotate-one 1s linear infinite;
+  border-left: 3px solid orange;
+
+
+}
+
+.inner.two {
+  right: 0%;
+  top: 0%;
+  //animation: rotate-two 1s linear infinite;
+  border-right: 3px solid orange;
+}
+
+.inner.three {
+  right: 0%;
+  bottom: 0%;
+  //animation: rotate-three 1s linear infinite;
+  border-top: 3px solid orange;
+}
+
+@keyframes rotate-onek {
+  0% {
+  transform:scale(1);
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+  transform:scale(.1);
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+@keyframes rotate-one {
+  0% {
+
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-two {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-three {
+  0% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
+
+#ipnews{
+background : transparent;
+border : none;
+color : white;
+background-color:rgba(0,191,255);
+opacity : 0.1;
+}
+
+#rm_b{
+background-color:rgba(0,191,255);
+border : rgba(0,191,255);
+color : white;
+opacity : 0.3;
+}
+#rm_b:hover{
+background-color:rgba(0,191,255);
+border : rgba(0,191,255);
+color : white;
+opacity : 0.5;
+}
+
+#readmore_div{
+padding : 10px;
+width : 300px;
+max-height : 550px;
+overflow-y :scroll;
+color : powderblue;
+ position: absolute;
+left:800px;
+top:-600px;
+visibility : hidden;
+background: rgba(0, 175, 255, 0.1);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(0, 175, 255, 0.3);
+}
+::-webkit-scrollbar{
+width:3px;
+}
+
+
+</style>
+</html>
+
+

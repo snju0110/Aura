@@ -101,7 +101,7 @@ def Login(request):
         if user is not None:
             auth.login(request, user)
             print("Logged in as ", user)
-            return redirect('main')
+            return redirect('Head_display')
         else:
             print("login failed")
             messages.info(request, "Check User name or password")
@@ -117,13 +117,14 @@ def Jarvis_Headsup(request):
     user = current_user.username
 
     talk_data = 'Ask here !'
+    phrase_word = ''
 
     if request.method == 'POST':
         phrase_word = request.POST["phrase"]
         print("---------------------------------------------------------------phrase_word :", phrase_word)
         talk_data = wikipedia.summary("phrase_word", sentences=2)
         print(talk_data)
-        print(phrase_word)
+        print("|" + str(phrase_word) + "|")
     today = date.today()
     parsed_today = today.strftime("%Y-%m-%d")
     startdate = str(date.today()).split('-')
@@ -145,8 +146,11 @@ def Jarvis_Headsup(request):
         'dem_category': category_data,
         'talk_data': talk_data,
     }
-    print("passed")
-    return render(request, "jarvis_wings.html", context)
+
+    if phrase_word == 'open document manager':
+        return redirect('/docma/')
+    else:
+        return render(request, "jarvis_wings_test.html", context)
 
 
 def DemMainPage(request):
@@ -314,6 +318,26 @@ def app_login(request):
             else:
                 return JsonResponse({'Login': False}, safe=False)
         except:
-            return JsonResponse({'Login':False} , safe=False)
+            return JsonResponse({'Login': False}, safe=False)
 
 
+def docma(request):
+    if request.method == 'POST':
+        pass
+        doc_type = request.POST['doc_type']
+        doc_user = request.POST['doc_user']
+        sdate = request.POST['sdate']
+        edate = request.POST['edate']
+        doc_no = request.POST['doc_no']
+        #
+        print("doc_type :" , doc_type)
+        print("doc_user :", doc_user)
+        print("doc_no :", doc_no)
+        print("sdate :", sdate)
+        print("edate :" , edate)
+
+
+
+
+
+    return render(request, "docma.html")
