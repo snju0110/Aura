@@ -140,11 +140,29 @@ def Jarvis_Headsup(request):
         'primaryCat').annotate(
         total_amount=Sum('amount'))
     print(category_data)
+    datewisespent = demDailyData.objects.filter(date__range=[MonthStartDate, today], user=user,
+                                                type='Sent').exclude(primaryCat="Skip").values(
+        'date').annotate(
+        total_amount=Sum('amount'))
+    data = {}
+    m_ate = []
+    m_spen = []
+    for i in datewisespent:
+        q_date = i['date']
+        f_date = q_date.strftime("%Y-%m-%d")
+        # data[f_date] = i['total_amount']
+        m_ate.append(f_date)
+        m_spen.append(i['total_amount'])
+
 
     context = {
         'dem_monthly': monthly_type_data,
         'dem_category': category_data,
         'talk_data': talk_data,
+        'm_ate' : m_ate ,
+        'm_spen' : m_spen ,
+
+
     }
 
     if phrase_word == 'open document manager':
@@ -276,18 +294,11 @@ def test_case_a(request):
     if request.method == 'POST':
         print(request.data)
     if request.method == 'GET':
-        ata = {'use': 'pas'}
-    # current_user = request.user
-    # user = current_user.username
+        ata = {'All Data': 'Delete'}
+        foodDailyData.objects.all().delete()
+    return JsonResponse(ata, safe=False)
+
     #
-    # data = settingDemCategory.objects.values_list('primary_category', flat=True)
-    # print("data",data)
-    # for i in data:
-    print("----------------------------")
-
-    return JsonResponse(request.data, safe=False)
-
-    # foodDailyData.objects.all().delete()
 
 
 def monthlydata(requests):

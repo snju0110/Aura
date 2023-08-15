@@ -154,8 +154,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 <script scr = "{% static 'assets/js/heads_up_js.js'%}" >
 /////////////////////////////////////////GRAPH
 
-const xValues = [50,60,70,80,90,100,110,120,130,140,150];
-const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+const xValues = {{ m_spen }};
+const yValues = {{ m_ate }};
 
 new Chart("myChart", {
   type: "line",
