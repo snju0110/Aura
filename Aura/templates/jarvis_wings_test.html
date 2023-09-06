@@ -5,14 +5,14 @@
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=NO">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, shrink-to-fit=YES">
     <title>Heads up..</title>
 	 <link rel = "stylesheet" href= "{% static 'jarvis_test.css' %}">
 	 <link rel = "stylesheet" href= "{% static 'assets/js/heads_up_js.js' %}">
 
 </head>
 
-<body>
+<body class="fullpage">
 
 <div class = "full">
 
@@ -40,7 +40,6 @@
 	<div id="chart_id">
 		<canvas id="myChart">
 		</canvas></div>
-
 	  <div class="newshead">
           <div class="newstitlea">
          <img class="newsimage" src="ironman/news5.png" alt=""
@@ -51,12 +50,7 @@
               </div>
        <div id = "titles"class="newstitle" >!!!</div>
     </div>
-
-
-
-
 </div>
-
 		<div class = "circle"></div>
 		<div class = "circle1"  id = "S1"></div>
 		<div class = "mainContent">
@@ -154,8 +148,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 <script scr = "{% static 'assets/js/heads_up_js.js'%}" >
 /////////////////////////////////////////GRAPH
 
-const xValues = {{ m_spen }};
-const yValues = {{ m_ate }};
+const xValues = [1,2,3];
+const yValues = [100,200,300];
 
 new Chart("myChart", {
   type: "line",
@@ -236,9 +230,6 @@ let lon;
         })
         .then((data) => {
             console.log("lets log from here!!")
-
-
-
           console.log(data);
           temperature.textContent =
               Math.floor(data.main.temp - kelvin) + "°C" ;
@@ -284,7 +275,7 @@ function get_news(news_topic){
         })
         .then((dataa) => {
           console.log(dataa);
-          console.log(dataa.results[0]['title']);
+
           news_all_data =' ';
 			news_all_data +=   " News on:"+news_topic + "<br>";
           for(let i = 0; i < 10 ; i++)
@@ -409,7 +400,7 @@ rone.animationDirection = "paused";
 
   //stopRecognition();
 
-  formElement.submit();
+  //formElement.submit();
 
   /////////////
   console.log("----------------------------");

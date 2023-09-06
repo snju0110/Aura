@@ -4,71 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'docma_static/docstyle.css' %}">
-    <title>docma</title>
+    <link rel="stylesheet" href="{% static 'docma_static/docmastyle.css' %}">
+    <title>Save your document!!</title>
 </head>
+
 <body class="page">
-<div class="main">
-    <div class="profile_picture" id="pp">
+<h2 class="heading">Save your document!!</h2>
+<form id="formm" action = "/doc/" method = "POST" class="form_upload" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class = img_box>
+        <div class = "img_upload">
+            <div class="set_centre">
+                <img id="front" src="{% static 'docma_static/pbg.jpg' %}" width = 180px height = 260px >
+                <input type = file name = 'file_f' id="file_front">
+            </div>
+        </div>
+        <div class = "img_upload">
+            <div class="set_centre">
+                <img id="back" src="{% static 'docma_static/pbg.jpg' %}" width = 180px height = 260px >
+                <input type = file  name = 'file_b' id="file_back">
+            </div>
+        </div>
+    </div>
 
-          <img src="{% static 'docma_static/green.jpg' %}"     id="pro" alt=""
-         >
-        <textarea id="description" placeholder="otherDescription"> U know hu i am</textarea>
-        <textarea id="ocr" placeholder="OCR"></textarea>
-         </div>
-
-
-<input id="ip_file" type="file">
-
-</div>
-<div id="details" class="detailsc" >
-        <form id="formm" action = "/docma/" method = "POST">
-            {% csrf_token %}
-            <div>
-            <p id="doc_details" >This document is
+<div class="details">
+     <p id="doc_details" >This document is
             <select name="doc_type" id="doc_catid">
-                      <option value="Adahar">Adahar</option>
-                      <option value="purchaseOrder">purchaseOrder</option>
-                      <option value="Bank">Bank</option>
-                      <option value="Health">Health</option>
-                      <option value="land">land</option>
-                      <option value="debt">debt</option>
-                      <option value="vehicle">vechile</option>
-                      <option value="investments">investments</option>
-                      <option value="Education">Education</option>
-            </select>
-            kind with identity
-            <input type="text" name="doc_no" id="billid1"><br><br>
+                 {% for i in doc_cat %}
+                <option value={{i}}>{{i}}</option>
+                {% endfor %}
+            </select> <br><br>
+            kind with identity <input type="text" name="doc_no" id="billid1"><br><br>
                 which is releated to
-
             <select name="doc_user" id="doc_user">
-                <option value="Veerababu">Veerababu</option>
-                <option value="Rani">Rani</option>
-                <option value="Sanjay">Sanjay</option>
-                <option value="Avinash">Avinash</option>
-                <option value="Others">Others</option>
-                <option value="Home">Home</option>
+                {% for i in doc_holder %}
+                <option value={{i}}>{{i}}</option>
+                {% endfor %}
             </select>
                 and it is initiated on  <input name = 'sdate' type="date" id="init">  <br><br>
                 and valid upto          <input name = 'edate' type="date" id="exp" >
-
-
+                with a value of <input name="value" type="text">
+                <h5>remarks : <input type="text" name="remarks"></h5>
             </p>
-
-
-<button class="sav" style="vertical-align:middle"><span>Save </span></button>
-
-
-
 </div>
-    </form>
-    
-</div>
+    <input class="sub" type="submit">
+</form>
 </body>
-
 </html>
-
 <script src="https://unpkg.com/tesseract.js@v2.0.0-alpha.13/dist/tesseract.min.js"></script>
-
 <script  src="{% static 'docma_static/docjs.js' %}">
 </script>

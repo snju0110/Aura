@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta  charset="UTF-8" name="viewport" content=" initial-scale= 0.6">
+    <title>DOC Viewer</title>
+    <link rel="stylesheet" href="{% static 'docma_static/doc_viewer_style.css' %}">
+<!--test-->
+</head>
+<body class="page">
+<div class="logo">
+    <img src="{% static 'docma_static/logo.jpg' %}"
+    width="230px">
+</div>
+{% for i in doc_type %}
+<div class = "set" id="sett">
+{% for j in i %}
+    <a class = "cards" href = "/docviewer/{{j}}/">
+<div class="card">
+
+<!--    <a class="cards" href="/doc/">-->{{j}}
+<!--    <h4 class="text">{{j}}</h4>-->
+<!--    </a>-->
+</div>
+        </a>
+    {% endfor %}
+
+
+    </div>
+{% endfor %}

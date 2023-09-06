@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta  charset="UTF-8" name="viewport" content=" initial-scale= 0.6">
+    <title>Welcome Home!</title>
+    <link rel="stylesheet" href="{% static 'docma_static/doc_viewer_style.css' %}">
+
+</head>
+<body class="page">
+{% for i in data %}
+<!--  <img src="{% static 'Docma/Aadhar_card/Avinash_853841550435_front.jpg ' %}">-->
+<!--<div style="background: url(/{{i.document}}) no-repeat"></div>-->
+<!--  <img src="{% static 'Docma/Aadhar_card/Avinash_853841550435_front.jpg' %}">-->
+<div class = "imageholder" >
+
+    <div class="info">&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp{{i.4}}&nbsp &nbsp &nbsp{{i.3}}</div>
+<img class = "pics" src= "{{i.2.url}}"  width="{{i.0}}" height="{{i.1}}">
+<img class = "pics" src= "{{i.5.url}}"  width="{{i.0}}" height="{{i.1}}">
+
+
+      </div>
+{% endfor %}
+</body>
+</html>

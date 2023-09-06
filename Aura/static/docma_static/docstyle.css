@@ -1,10 +1,15 @@
 
 .page{
-width:1280px;
-height:1000px;
+width:1920px;
+height:1080px;
 background-image:url('pbg.jpg');
 #background-image: linear-gradient(to bottom right,#FFF8DC 10% ,black);
 
+}
+
+.pick{
+width: 2500px;
+height:320px;
 }
 
 p{
@@ -19,12 +24,18 @@ padding:50px;
 }
 
 #ip_file{
-position: absolute;
-left:80px;
+position:relative;
+width:160px;
+left:60px;
 top:380px;
-
-
 }
+#ip_file_back{
+position:relative;
+width:160px;
+left:10px;
+top:380px;
+}
+
 #pro{
 width:200px;
 height:300px;
@@ -35,15 +46,28 @@ top:60px;
 left:60px;
 border-radius:20px;
 box-shadow: 0 0 10px grey;
-
 }
 
-.profile_picture{
-#background-color:#a414dd;
-border-radius:25px;
+#pro_back{
 width:200px;
 height:300px;
+transform:scale(5);
+position : absolute;
+scale : 0.2;
+top:60px;
+left:300px;
+border-radius:20px;
+box-shadow: 0 0 10px grey;
+}
 
+
+.profile_picture{
+display : flex;
+#border: 5px solid red;
+#background-color:#a414dd;
+border-radius:25px;
+width:600px;
+height:400px;
 }
 #description{
 width:220px;

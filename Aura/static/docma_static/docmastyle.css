@@ -1,0 +1,87 @@
+
+.heading{
+margin-left:100px;
+color:orange;
+text-shadow: 0px 0px 25px black;
+}
+.page{
+background-color : #383838;
+
+}
+
+.img_box{
+color:white;
+display : flex;
+float : left;
+#background-color:#a414dd;
+height : 400px;
+width : 500px ;
+}
+.form_upload{
+
+}
+
+input[type='file']{
+margin-top:10px;
+color:white;
+opacity : 0.5;
+}
+input[type='file']:hover{
+margin-top:10px;
+color:white;
+opacity : 1;
+}
+
+
+input[type='text'],input[type='date']{
+box-shadow: 0px 0px 10px black;
+color:white;
+background-color: grey;
+}
+select{
+background-color: grey;
+box-shadow: 0px 0px 10px black;
+color:white;
+}
+
+
+.img_upload{
+margin : 10px;
+margin-right : 20px;
+#background-color:green;
+height : 350px;
+width : 220px ;
+justify-content:center;
+align-items: center;
+
+}
+.set_centre{
+position:relative;
+top:30px;
+left:20px;
+
+}
+.set_centre img{
+border-radius: 13px;
+box-shadow: 0px 0px 10px black;
+}
+
+.form_upload{
+}
+.details{
+margin:10px;
+width:500px;
+}
+.doc_details{
+#background-color:#a414dd;
+height : 400px;
+width : 500px ;
+}
+.sub{
+margin-left:10px;
+
+}
+P , h5{
+
+color:white;
+}

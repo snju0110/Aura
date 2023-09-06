@@ -14,27 +14,39 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path , include
+from django.urls import path, include
 from dataLoggingApi import views
+from dataLoggingApi import Jarvis as jarvis
 from DocManager import views as DocViews
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # path('dem/' , include('dataLoggingApi.urls')) ,
-    path('datalog/', views.DemDailyData),
-    path('foodlog/', views.food_daily_data),
-    path('test/', views.test_case_a),
-    # path('datalog/mealtracker', views.Meal_tracker),
-    path('edit/<int:id>', views.edit_records, name="formdata"),  # edit dem data
+
+    path('admin/', admin.site.urls),  # admin
+    path('datalog/', views.DemDailyData),  # data logging DEM
     path('', views.Login),  # login page
+    path('applogin/', views.app_login), # app login
     path('Logout/', views.Logout),  # logout
-    path('Jarvis/', views.Jarvis_Headsup, name="Head_display"),  # Jarvis DashBoard
+
+    path('test_a/', views.test_case_a),
+    path('Jarvis/', jarvis.Jarvis_Headsup, name="Head_display"),  # Jarvis DashBoard
+    # Dem
+    path('edit/<int:id>', views.edit_records, name="formdata"),  # edit dem data
     path('Dem/Main/', views.DemMainPage, name="main"),  # landing page
-    path('transactionAnalysis/', views.DemMainPage),
-    path('docmanager/', DocViews.save_doc_data),
     path('customtransaction/', views.MonthTable),  # all records table
-    path('monthlydata/', views.monthlydata),
-    path('applogin/' , views.app_login),
-    path('docma/' , views.docma) ,
+    path('transactionAnalysis/', views.DemMainPage),  # check optimisation
+
+    # Doc Manager
+    path('doc/', DocViews.docma_test),
+    path('doccat/', DocViews.docma_cat),
+    path('docviewer/<str:z>/', DocViews.doc_viewer),
+
+
+
+
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,3 +5,6 @@ from django.contrib import admin
 
 from .models import *
 admin.register(DocData)(admin.ModelAdmin)
+admin.register(docma)(admin.ModelAdmin)
+admin.register(doc_holder)(admin.ModelAdmin)
+admin.register(doc_type)(admin.ModelAdmin)
