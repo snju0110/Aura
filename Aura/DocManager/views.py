@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 
 from .models import *
 from datetime import datetime
-from PIL import Image
+# from PIL import Image
 
 
 
@@ -23,16 +23,17 @@ def doc_viewer(request , z):
     std_small = [750 , 500]
     std_long = []
     for i in query:
-        image = Image.open(i.document)
-        width , height = image.size
+        data.append([350, 225, i.document, i.number, i.holder, i.document_back])
+        # image = Image.open(i.document)
+        # width , height = image.size
         # data.append([width, height, i.document])
-        if width >= height:
-            data.append([350, 225, i.document ,i.number , i.holder,i.document_back])
-        else:
-            data.append([250, 400, i.document,i.number , i.holder,i.document_back])
+        # if width >= height:
+        #     data.append([350, 225, i.document ,i.number , i.holder,i.document_back])
+        # else:
+        #     data.append([250, 400, i.document,i.number , i.holder,i.document_back])
 
-        print('--------------------------')
-        print(width,height)
+        # print('--------------------------')
+        # print(width,height)
 
 
 
