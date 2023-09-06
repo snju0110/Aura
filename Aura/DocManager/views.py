@@ -46,13 +46,14 @@ def doc_viewer(request , z):
 
 
 def docma_cat(request):
-    query1 = doc_type.objects.values_list('type', flat=True)
+    # query1 = doc_type.objects.values_list('type', flat=True)
+    query1 = docma.objects.values('type').distinct()
     set = []
     subset = []
     for i , j in  enumerate(query1):
-        print(i,j)
+        print(i,j['type'])
         i = i+1
-        subset.append(j)
+        subset.append(j['type'])
         if i % 3 == 0:
             set.append(subset)
             subset = []
