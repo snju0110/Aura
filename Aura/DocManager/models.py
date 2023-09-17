@@ -47,7 +47,7 @@ class docma(models.Model):
     holder = models.CharField(max_length=200)
     number = models.CharField(max_length=200)
     document = models.FileField(upload_to=upload_setup)
-    document_back = models.FileField(upload_to=upload_setup_back)
+    document_back = models.FileField(upload_to=upload_setup_back , blank=True,default='default.png')
     desc = models.CharField(max_length=200)
     type = models.CharField(max_length=200)
     cat1 = models.CharField(max_length=200, default='NA')

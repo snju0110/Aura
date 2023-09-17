@@ -16,7 +16,10 @@
 
     <div class="info">&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp{{i.4}}&nbsp &nbsp &nbsp{{i.3}}</div>
 <img class = "pics" src= "{{i.2.url}}"  width="{{i.0}}" height="{{i.1}}">
-<img class = "pics" src= "{{i.5.url}}"  width="{{i.0}}" height="{{i.1}}">
+    {% if i.5 != 'default.png'%}
+        <img class = "pics" src= "{{i.5.url}}"  width="{{i.0}}" height="{{i.1}}">
+    {% else %}
+    {% endif %}
 
 
       </div>

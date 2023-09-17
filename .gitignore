@@ -5,3 +5,4 @@ Aura/db.sqlite3
 Aura/Aura/__pycache__
 Aura/DocManager/__pycache__
 Aura/static/Docma/
+*.pyc
