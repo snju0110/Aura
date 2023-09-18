@@ -41,12 +41,9 @@ urlpatterns = [
     path('doc/', DocViews.docma_test),
     path('doccat/', DocViews.docma_cat),
     path('docviewer/<str:z>/', DocViews.doc_viewer),
-
-
-
+    path('docdata/' , DocViews.get_docdata )
 
 
 ]
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

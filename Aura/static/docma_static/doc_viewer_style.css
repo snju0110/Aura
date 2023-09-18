@@ -77,3 +77,34 @@ border-radius : 25px;
 #border:1px solid orange;
 box-shadow : 0 0 50px 	#181818;
 }
+
+
+.filter-bar  {
+background-color : #7393B3 ;
+border-radius: 10px;
+width : 320px;
+padding:5px;
+
+}
+
+
+.filter-bar input , select , a {
+border-radius: 6px;
+padding:5px;
+margin-left: 10px;
+font-weight: bold ;
+}
+.filter-bar a{
+color:white;
+}
+
+
+.nav-bar{
+display:flex;
+background-color: #36454F;
+margin:10px;
+padding: 10px;
+border-radius: 10px;
+justify-content :right;
+padding-right:180px;
+}

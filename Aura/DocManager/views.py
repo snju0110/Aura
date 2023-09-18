@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from .serializers import *
 
 from .models import *
 from datetime import datetime
@@ -16,30 +18,21 @@ def upload_doc(request):
 
 
 def doc_viewer(request, z):
-    print(z)
-    query = docma.objects.filter(type=z)
-
+    if request.method == 'POST':
+        print(request.POST['holder_name'])
+        query = docma.objects.filter(type=z, holder= request.POST['holder_name'])
+    else:
+        query = docma.objects.filter(type=z)
     data = []
-    std_small = [750, 500]
-    std_long = []
     for i in query:
         data.append([350, 225, i.document, i.number, i.holder, i.document_back])
+    holders = doc_holder.objects.all()
 
-        # image = Image.open(i.document)
-        # width , height = image.size
-        # data.append([width, height, i.document])
-        # if width >= height:
-        #     data.append([350, 225, i.document ,i.number , i.holder,i.document_back])
-        # else:
-        #     data.append([250, 400, i.document,i.number , i.holder,i.document_back])
-
-        # print('--------------------------')
-        # print(width,height)
-
-    print(data)
     context = {
         'record': query,
-        'data': data
+        'data': data,
+        'holder': holders,
+        'url':z
     }
 
     return render(request, 'doc_viewer.html', context)
@@ -117,3 +110,11 @@ def docma_test(request):
     }
 
     return render(request, "docma.html", context)
+
+
+def get_docdata(request):
+    query = docma.objects.all()
+
+    ata = docmaSerializer(query, many=True)
+
+    return JsonResponse(ata.data, safe=False)

@@ -8,21 +8,33 @@
 
 </head>
 <body class="page">
+<div class="nav-bar">
+
+<!--<a class = 'nav-bar-text' href="https://www.example.com" >Home</a>-->
+    <div class = "filter-bar">
+    <form method="POST" action = '/docviewer/{{url}}/' >
+        {% csrf_token %}
+        <a>Doc Holder:</a>
+       <select name = 'holder_name'>
+           {% for i in holder %}
+        <option value="{{i.Holder}}">{{i.Holder}}</option>
+           {% endfor %}
+       </select>
+        <input type = 'submit' value="Apply Filters">
+     </form>
+    </div>
+
+</div>
 {% for i in data %}
-<!--  <img src="{% static 'Docma/Aadhar_card/Avinash_853841550435_front.jpg ' %}">-->
-<!--<div style="background: url(/{{i.document}}) no-repeat"></div>-->
-<!--  <img src="{% static 'Docma/Aadhar_card/Avinash_853841550435_front.jpg' %}">-->
 <div class = "imageholder" >
 
     <div class="info">&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp{{i.4}}&nbsp &nbsp &nbsp{{i.3}}</div>
-<img class = "pics" src= "{{i.2.url}}"  width="{{i.0}}" height="{{i.1}}">
-    {% if i.5 != 'default.png'%}
+        <img class = "pics" src= "{{i.2.url}}"  width="{{i.0}}" height="{{i.1}}">
+        {% if i.5 != 'default.png'%}
         <img class = "pics" src= "{{i.5.url}}"  width="{{i.0}}" height="{{i.1}}">
-    {% else %}
-    {% endif %}
-
-
-      </div>
+        {% else %}
+        {% endif %}
+    </div>
 {% endfor %}
 </body>
 </html>
