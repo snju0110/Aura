@@ -10,15 +10,24 @@
 <body class="page">
 <div class="nav-bar">
 
+<div class = "home">
+    <a href = '/Jarvis/'>Home /</a>
+    <a href = '/doccat/'>Document Category</a>
+
+</div>
 <!--<a class = 'nav-bar-text' href="https://www.example.com" >Home</a>-->
     <div class = "filter-bar">
     <form method="POST" action = '/docviewer/{{url}}/' >
         {% csrf_token %}
         <a>Doc Holder:</a>
        <select name = 'holder_name'>
+           <option value={{select}}>{{select}}</option>
            {% for i in holder %}
-        <option value="{{i.Holder}}">{{i.Holder}}</option>
+           {% if i.Holder != select %}
+                <option value="{{i.Holder}}">{{i.Holder}}</option>
+           {% endif %}
            {% endfor %}
+
        </select>
         <input type = 'submit' value="Apply Filters">
      </form>

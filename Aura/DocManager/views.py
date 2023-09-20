@@ -18,11 +18,13 @@ def upload_doc(request):
 
 
 def doc_viewer(request, z):
-    if request.method == 'POST':
+    if request.method == 'POST' and  request.POST['holder_name'] != 'All_records':
         print(request.POST['holder_name'])
         query = docma.objects.filter(type=z, holder= request.POST['holder_name'])
+        select = request.POST['holder_name']
     else:
         query = docma.objects.filter(type=z)
+        select = 'All_records'
     data = []
     for i in query:
         data.append([350, 225, i.document, i.number, i.holder, i.document_back])
@@ -32,7 +34,8 @@ def doc_viewer(request, z):
         'record': query,
         'data': data,
         'holder': holders,
-        'url':z
+        'url':z ,
+        'select' : select
     }
 
     return render(request, 'doc_viewer.html', context)
