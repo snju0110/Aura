@@ -30,7 +30,8 @@ def Jarvis_Headsup(request):
         if request.method == 'POST':
             phrase_word = request.POST["phrase"]
             print("---------------------------------------------------------------phrase_word :", phrase_word)
-            talk_data = wikipedia.summary("phrase_word", sentences=2)
+            # talk_data = wikipedia.summary("phrase_word", sentences=2)
+            talk_data = phrase_word
             print(talk_data)
             print("|" + str(phrase_word) + "|")
         today = date.today()
@@ -72,7 +73,10 @@ def Jarvis_Headsup(request):
         }
 
         if phrase_word == 'open document manager':
-            return redirect('/docma/')
+            return redirect('/doccat/')
+
+        elif phrase_word == 'add document':
+            return redirect('/doc/')
         else:
             return render(request, "jarvis_wings_test.html", context)
             # return render(request, "jarvis_wings_test.html")

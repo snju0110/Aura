@@ -28,6 +28,10 @@
            {% endif %}
            {% endfor %}
 
+           {% if select != 'All_records' %}
+                <option value=All_records>All records</option>
+            {% endif %}
+
        </select>
         <input type = 'submit' value="Apply Filters">
      </form>

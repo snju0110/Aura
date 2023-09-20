@@ -29,6 +29,7 @@ def doc_viewer(request, z):
     for i in query:
         data.append([350, 225, i.document, i.number, i.holder, i.document_back])
     holders = doc_holder.objects.all()
+    print("-----------" , holders)
 
     context = {
         'record': query,
